@@ -9,13 +9,13 @@ def get_exhibition(id: int):
     return ()
 
 @router.post('/{exhibition}')
-def add_exhibition(new_exhibition: ExhibitionInput):
-    return add_exhibition()
+def add_exhibition_router(new_exhibition: ExhibitionInput):
+    return add_exhibition(new_exhibition)
 
 @router.put('/{exhibition_id}')
-def update_exhibition(exhibition_id: int, new_ticket: ExhibitionInput):
-    return update_exhibition()
+def update_exhibition_router(exhibition_id: int, new_ticket: ExhibitionInput):
+    return update_exhibition(exhibition_id,new_ticket)
 
 @router.delete('/{exhibition_id}')
-def delete_current_exhibition(exhibition_id: int):
-    return delete_current_exhibition()
+def delete_current_exhibition_router(exhibition_id: int):
+    return delete_current_exhibition(exhibition_id)

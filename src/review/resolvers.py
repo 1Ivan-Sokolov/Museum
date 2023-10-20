@@ -2,7 +2,10 @@ from src.database.database import base_manager
 from src.review.models import ReviewInput, ReviewOutput
 
 def get_review(id: int):
-    review = base_manager.execute('SELECT * FROM review WHERE id=?', args=(id,))['data'][0]
+    result = base_manager.execute('SELECT * FROM review WHERE id=?', args=(id,))
+    if not result:
+        return None
+    review = result['data']
     review_output = ReviewOutput(id=review[0], id_exhibition=review[1], id_visitor=review[2], rating=review[3], comment=review[4])
     return review_output
 

@@ -2,7 +2,10 @@ from src.database.database import base_manager
 from src.gallery.models import GalleryInput, GalleryOutput
 
 def get_gallery(id: int):
-    gallery = base_manager.execute('SELECT * FROM gallery WHERE id=?', args=(id,))['data'][0]
+    result = base_manager.execute('SELECT * FROM gallery WHERE id=?', args=(id,))
+    if not result:
+        return None
+    gallery = result['data']
     gallery_output = GalleryOutput(id=gallery[0], id_museum=gallery[1], name=gallery[2])
     return gallery_output
 

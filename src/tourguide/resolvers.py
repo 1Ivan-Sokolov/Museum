@@ -3,7 +3,10 @@ from src.tourguide.models import TourguideInput, TourguideOutput
 
 
 def get_tourguide(id: int):
-    tourguide = base_manager.execute('SELECT * FROM tourguide WHERE id=? ', args=(id,))['data'][0]
+    result = base_manager.execute('SELECT * FROM tourguide WHERE id=? ', args=(id,))
+    if not result:
+        return None
+    tourguide = result['data']
     tourguide_output = TourguideOutput(id=tourguide[0],id_museum=tourguide[1], name=tourguide[2])
     return tourguide_output
 

@@ -3,7 +3,10 @@ from src.museum.models import MuseumInput, MuseumOutput
 
 
 def get_museum(id: int):
-    museum = base_manager.execute('SELECT *FROM museum WHERE id=? ', args=(id,))['data'][0]
+    result = base_manager.execute('SELECT *FROM museum WHERE id=? ', args=(id,))
+    if not result:
+        return None
+    museum = result['data']
     museum_output = MuseumOutput(id=museum[0], name=museum[1], address=museum[2] )
     return museum_output
 

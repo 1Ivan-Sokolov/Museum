@@ -1,10 +1,15 @@
 from src.database.database import base_manager
 from src.ticket.models import TicketInput, TicketOutput
 
+
 def get_ticket(id: int):
-    ticket = base_manager.execute('SELECT * FROM ticket WHERE id=?', args=(id,))['data'][0]
+    result = base_manager.execute('SELECT * FROM ticket WHERE id=?', args=(id,))
+    if not result:
+        return None
+    ticket = result['data']
     ticket_output = TicketOutput(id=ticket[0], id_museum=ticket[1], id_exhibition=ticket[2], id_visitor=ticket[3], name=ticket[4], date=ticket[5], time=ticket[5], ticket_price=ticket[6])
     return ticket_output
+
 
 def add_ticket(new_ticket: TicketInput):
     ticket = base_manager.execute('INSERT INTO ticket(id_museum, id_exhibition, id_visitor, name, date, time, ticket_price )'

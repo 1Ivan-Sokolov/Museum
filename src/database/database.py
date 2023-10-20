@@ -32,6 +32,8 @@ class DBManager:
         try:
             res = cur.execute(query, args)
             result = res.fetchall() if many else res.fetchone()
+            if not result:
+                return None
             conn.commit()
             return {"code": 200, "data": result}
         except sqlite3.Error as er:
@@ -42,3 +44,4 @@ class DBManager:
 
 
 base_manager = DBManager(DB_PATH)
+# base_manager.create_base(Path(__file__).resolve().parent / 'museum.sql')
