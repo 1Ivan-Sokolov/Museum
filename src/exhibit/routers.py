@@ -5,10 +5,10 @@ from src.exhibit.resolvers import add_exhibit, get_exhibit, delete_current_exhib
 router = APIRouter()
 
 @router.get('/{exhibit}')
-def get_exhibit_router(id: int):
-    return get_exhibit(id)
+def get_exhibit_router(exhibit_id: int):
+    return get_exhibit(exhibit_id)
 
-@router.post('/{exhibit}')
+@router.post('/')
 def add_exhibit_router(new_exhibit: ExhibitInput):
     return add_exhibit(new_exhibit)
 

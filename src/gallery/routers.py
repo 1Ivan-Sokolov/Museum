@@ -5,10 +5,10 @@ from src.gallery.resolvers import add_gallery, get_gallery, delete_current_galle
 router = APIRouter()
 
 @router.get('/{gallery}')
-def get_gallery_router(id: int):
-    return get_gallery(id)
+def get_gallery_router(gallery_id: int):
+    return get_gallery(gallery_id)
 
-@router.post('/{gallery}')
+@router.post('/')
 def add_gallery_router(new_gallery: GalleryInput):
     return add_gallery(new_gallery)
 

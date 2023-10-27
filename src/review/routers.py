@@ -5,9 +5,9 @@ from src.review.resolvers import add_review, get_review, delete_current_review, 
 router = APIRouter()
 
 
-@router.get('/{review}')
-def get_review_router(id: int):
-    return get_review(id)
+@router.get('/{review_id}')
+def get_review_router(review_id: int):
+    return get_review(review_id)
 
 
 @router.post('/{exhibition_review}')

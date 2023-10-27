@@ -5,10 +5,10 @@ from src.museum.resolvers import add_museum, get_museum, delete_current_museum, 
 router = APIRouter()
 
 @router.get('/{museum}')
-def get_museum_router(id: int):
-    return get_museum(id)
+def get_museum_router(museum_id: int):
+    return get_museum(museum_id)
 
-@router.post('/{museum}')
+@router.post('/')
 def add_museum_router(new_exhibition: MuseumInput):
     return add_museum(new_exhibition)
 

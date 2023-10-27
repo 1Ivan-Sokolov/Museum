@@ -45,6 +45,7 @@ CREATE TABLE visitor(
 id INTEGER PRIMARY KEY,
 name varchar(100) NOT NULL,
 surname varchar(100) NOT NULL,
+password varchar(100) NOT NULL,
 email varchar(100) NOT NULL,
 contacts varchar(100) NOT NULL
 

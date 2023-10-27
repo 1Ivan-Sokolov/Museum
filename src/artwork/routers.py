@@ -5,10 +5,10 @@ from src.artwork.resolvers import add_artwork, get_artwork, delete_current_artwo
 router = APIRouter()
 
 @router.get('/{artwork}')
-def get_artwork_router(id: int):
-    return get_artwork(id)
+def get_artwork_router(artwork_id: int):
+    return get_artwork(artwork_id)
 
-@router.post('/{artwork}')
+@router.post('/')
 def add_artwork_router(new_artwork: ArtworkInput):
     return add_artwork(new_artwork)
 
@@ -16,6 +16,6 @@ def add_artwork_router(new_artwork: ArtworkInput):
 def update_artwork_router(artwork_id: int, new_artwork: ArtworkInput):
     return update_artwork(artwork_id, new_artwork)
 
-@router.delete('/{artwork}')
+@router.delete('/{artwork_id}')
 def delete_current_artwork_router(ticket_id: int):
     return delete_current_artwork(ticket_id)

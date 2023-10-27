@@ -6,11 +6,11 @@ from src.ticket.resolvers import add_ticket, get_ticket, delete_current_ticket, 
 router = APIRouter()
 
 @router.get('/{ticket}')
-def get_ticket_router(id: int):
-    return get_ticket(id=id)
+def get_ticket_router(ticket_id: int):
+    return get_ticket(ticket_id)
 
 
-@router.post('/{ticket_buy}')
+@router.post('/')
 def add_ticket_router(new_ticket: TicketInput):
     return add_ticket(new_ticket)
 

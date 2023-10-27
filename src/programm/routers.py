@@ -5,10 +5,10 @@ from src.programm.resolvers import add_programm, get_programm, delete_current_pr
 router = APIRouter()
 
 @router.get('/{programm}')
-def get_programm_router(id: int):
-    return get_programm(id)
+def get_programm_router(programm_id: int):
+    return get_programm(programm_id)
 
-@router.post('/{programm}')
+@router.post('/')
 def add_programm_router(new_programm: ProgrammInput):
     return add_programm(new_programm)
 

@@ -5,10 +5,10 @@ from src.tourguide.resolvers import add_tourguide, get_tourguide, delete_current
 router = APIRouter()
 
 @router.get('/{tourguide}')
-def get_tourguide_router(id: int):
-    return get_tourguide(id)
+def get_tourguide_router(tourguide_id: int):
+    return get_tourguide(tourguide_id)
 
-@router.post('/{tourguide}')
+@router.post('/')
 def add_tourguide_router(new_tourguide: TourguideInput):
     return add_tourguide(new_tourguide)
 
