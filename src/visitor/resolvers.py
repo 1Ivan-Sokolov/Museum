@@ -30,7 +30,7 @@ def add_visitor(new_visitor: VisitorInput):
                                    'VALUES (?, ?, ?, ?, ?) '
                                    'RETURNING id ', args=(new_visitor.name, new_visitor.surname, new_visitor.password, new_visitor.email, new_visitor.contacts))
     return visitor
-
+# add_visitor(VisitorInput(name='ksfod', surname='kasdf', password='1234', email='email@mail.ru', contacts='+7921347123'))
 
 def update_visitor(visitor_id: int, new_visitor: VisitorInput):
     visitor = base_manager.execute('UPDATE visitor SET name=?, surname=?, password=?, email=?, contacts=? '

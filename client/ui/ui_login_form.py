@@ -53,6 +53,3 @@ class Ui_MainWindow(object):
         self.line_password.setPlaceholderText(_translate("MainWindow", "пароль"))
         self.Button_entrer.setText(_translate("MainWindow", "Войти"))
         self.Button_cancel.setText(_translate("MainWindow", "Отмена"))
-
-
-

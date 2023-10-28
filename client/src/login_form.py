@@ -1,9 +1,10 @@
 import sys
-
 from PyQt6.QtCore import pyqtSignal
 from PyQt6.QtWidgets import QMainWindow
 from client.ui.ui_login_form import Ui_MainWindow as Ui_LoginForm
-from client.src.base_worker import BaseWorker, Login, Visitor
+from client.src.base_worker import BaseWorker, Visitor, Login
+from client.src.user_list_form import UserList
+
 
 class LoginForm(QMainWindow, Ui_LoginForm):
 
@@ -15,24 +16,16 @@ class LoginForm(QMainWindow, Ui_LoginForm):
         self.base_worker = base_worker
 
         self.setupUi(self)
-        self.button_enter.clicked.connect(self.check_login)
-        self.push_cancel.clicked.connect(self.exit)
+        self.Button_entrer.clicked.connect(self.check_login)
+        self.Button_cancel.clicked.connect(self.exit)
 
     def check_login(self):
-        user = self.base_worker.check_login(Visitor(login_email=self.line_login.text(), password=self.line_password.text()))
-        if not user.user_id:
-            self.lbl_error.setVisible(True)
-            return
-        else:
-            self.start_main_window(user)
-
-    def start_main_window(self, login: Login):
-        # if login.user_post == 1:
-        #     self.main_window = UserList(self.base_worker, login)
-        # else:
-        #     self.main_window = MainForm(self.base_worker, login)
-        self.main_window.show()
-        self.close()
+        login = self.base_worker.check_login(Visitor(login_email=self.line_login.text(), password=self.line_password.text()))
+        # self.start_main_window(login)
+        if login:
+            self.main_window = UserList(self.base_worker, login)
+            self.main_window.show()
+            self.close()
 
     def exit(self):
         self.close()

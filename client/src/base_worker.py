@@ -27,10 +27,11 @@ class BaseWorker:
             'get_visitors':self.server_url + '/visitor/'
         }
 
-    def check_login(self, visitor: "VisitorInput"):
-        response = requests.get(self.end_points.get('check_login'), data=visitor.json())
-        print(response.text)
-        return Login(response.json())
+    def check_login(self, visitor: Visitor):
+        response = requests.get(self.end_points.get('check_login'), json={'email': visitor.login_email, 'name': 'name', 'surname': 'suranme', 'password': visitor.password, 'contacts': '+793124721313'})
+        if response.status_code == 200:
+            return Login(response.json()['data'][0])
+        return None
 
     def add_visitor(self, visitor: "VisitorInput"):
         response = requests.post(self.end_points.get('add_visitor'), data=visitor.json())
@@ -47,7 +48,7 @@ class BaseWorker:
         response = requests.get(url=self.end_points.get('get_visitors'))
         print(response.text)
         json = response.json()
-        return [Visitor(login_email=visitor['email'], password=visitor['password'])
+        return [Visitor(login_email=visitor['email'], password=visitor['password'], id=visitor['id'])
                 for visitor in json]
 
     def delete_visitor(self, visitor_id: int):
@@ -57,5 +58,3 @@ class BaseWorker:
 
 if __name__ == "__main__":
     base_worker = BaseWorker('http://127.0.0.1:8000')
-    lst = base_worker.get_visitors()
-    print(lst)

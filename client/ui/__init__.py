@@ -1,1 +1,0 @@
-pyuic6 ui/login_form.ui -o ui/login_form.py
