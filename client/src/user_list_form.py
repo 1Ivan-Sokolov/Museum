@@ -54,6 +54,5 @@ class UserList(QMainWindow, Ui_UserList):
             return
 
         visitor_id = self.tw_user_list.item(self.tw_user_list.currentRow(), 0).text()
-
         answer = QMessageBox.question(self, "Удаление пользователя", "Вы действительно хотите удалить выбранного "
                                                                      "пользователя?")

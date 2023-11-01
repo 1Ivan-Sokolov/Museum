@@ -5,7 +5,7 @@ from src.visitor.resolvers import add_visitor, get_visitor, delete_current_visit
 
 router = APIRouter()
 
-@router.get('/check')
+@router.post('/check')
 def check_exists_visitor(visitor: VisitorInput):
     return check_visitor(visitor)
 
